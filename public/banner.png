@@ -1,0 +1,50 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 渐变背景 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1200" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 装饰圆圈 -->
+  <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="500" r="120" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="600" cy="300" r="200" fill="rgba(255,255,255,0.05)"/>
+  
+  <!-- 主标题 -->
+  <text x="600" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white">
+    小说编写平台
+  </text>
+  
+  <!-- 副标题 -->
+  <text x="600" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.9)">
+    AI 辅助小说创作 · 多用户系统 · 精确计费
+  </text>
+  
+  <!-- 功能卡片 -->
+  <rect x="150" y="320" width="220" height="200" rx="15" fill="white" opacity="0.15"/>
+  <text x="260" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="white">📚</text>
+  <text x="260" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="white">小说管理</text>
+  
+  <rect x="490" y="320" width="220" height="200" rx="15" fill="white" opacity="0.15"/>
+  <text x="600" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="white">🤖</text>
+  <text x="600" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="white">AI 辅助</text>
+  
+  <rect x="830" y="320" width="220" height="200" rx="15" fill="white" opacity="0.15"/>
+  <text x="940" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="white">💰</text>
+  <text x="940" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="white">按 token 计费</text>
+  
+  <!-- 底部标签 -->
+  <rect x="500" y="540" width="200" height="40" rx="20" fill="rgba(255,255,255,0.2)"/>
+  <text x="600" y="568" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white">
+    Next.js + TypeScript + PostgreSQL
+  </text>
+</svg>
