@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  role         Role      @default(USER)
+  balance      Decimal   @default(2.00) @db.Decimal(10, 4)
+  apiKey       String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  novels       Novel[]
+  usageRecords UsageRecord[]
+
+  @@index([email])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Novel {
+  id               String    @id @default(cuid())
+  title            String
+  genre            Genre     @default(BG)
+  userId           String
+  user             User      @relation(fields: [userId], references: [id])
+  maleLeadName     String?
+  maleLeadTraits   String?
+  femaleLeadName   String?
+  femaleLeadTraits String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  chapters         Chapter[]
+
+  @@index([userId])
+}
+
+enum Genre {
+  BL
+  BG
+  OTHER
+}
+
+model Chapter {
+  id        String   @id @default(cuid())
+  novelId   String
+  novel     Novel    @relation(fields: [novelId], references: [id])
+  title     String
+  content   String   @default("")
+  order     Int
+  wordCount Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([novelId])
+  @@index([order])
+}
+
+model APIChannel {
+  id         String    @id @default(cuid())
+  name       String
+  type       ChannelType
+  baseUrl    String
+  apiKey     String
+  models     Json
+  enabled    Boolean   @default(true)
+  priority   Int       @default(0)
+  usageCount Int       @default(0)
+  lastUsed   DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  pricing    ModelPricing[]
+
+  @@index([type])
+  @@index([enabled])
+}
+
+enum ChannelType {
+  OPENAI
+  CLAUDE
+  ZHIPU
+  WENXIN
+  TONGYI
+  CUSTOM
+}
+
+model ModelPricing {
+  id         String   @id @default(cuid())
+  channelId  String
+  channel    APIChannel @relation(fields: [channelId], references: [id])
+  modelId    String
+  inputPrice Decimal  @db.Decimal(10, 4)
+  outputPrice Decimal @db.Decimal(10, 4)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([channelId, modelId])
+  @@index([channelId])
+}
+
+model UsageRecord {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  modelId     String
+  channelId   String
+  inputTokens Int
+  outputTokens Int
+  cost        Decimal  @db.Decimal(10, 4)
+  novelId     String?
+  chapterId   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
