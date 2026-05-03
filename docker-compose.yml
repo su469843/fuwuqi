@@ -1,0 +1,31 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://novel:novel@db:5432/novel_platform
+      - JWT_SECRET=dev-secret-change-in-production
+      - ADMIN_CODE=admin123
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=novel
+      - POSTGRES_PASSWORD=novel
+      - POSTGRES_DB=novel_platform
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
