@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  server: {
-    allowedHosts: ['.monkeycode-ai.online']
-  }
+  allowedDevOrigins: ['192.168.2.24']
 }
 
 export default nextConfig

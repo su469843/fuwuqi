@@ -86,7 +86,7 @@ export default function LoginPage() {
 
         <p className="mt-6 text-center text-gray-600">
           还没有账号？
-          <Link href="/auth/register" className="text-purple-600 font-semibold hover:underline ml-1">
+          <Link href="/register" className="text-purple-600 font-semibold hover:underline ml-1">
             立即注册
           </Link>
         </p>

@@ -32,7 +32,7 @@ export default function RegisterPage() {
       setError(data.error || "注册失败");
       return;
     }
-    router.push("/auth/login?registered=1");
+    router.push("/login?registered=1");
   }
 
   return (
@@ -113,7 +113,7 @@ export default function RegisterPage() {
 
         <p className="mt-6 text-center text-gray-600">
           已有账号？
-          <Link href="/auth/login" className="text-teal-600 font-semibold hover:underline ml-1">
+          <Link href="/login" className="text-teal-600 font-semibold hover:underline ml-1">
             立即登录
           </Link>
         </p>

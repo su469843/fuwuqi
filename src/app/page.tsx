@@ -9,13 +9,13 @@ export default function Home() {
       </p>
       <div className="flex gap-4">
         <Link
-          href="/auth/login"
+          href="/login"
           className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
           登录
         </Link>
         <Link
-          href="/auth/register"
+          href="/register"
           className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700"
         >
           注册

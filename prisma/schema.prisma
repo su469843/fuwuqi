@@ -49,6 +49,7 @@ model Novel {
 enum Genre {
   BL
   BG
+  GL
   OTHER
 }
 

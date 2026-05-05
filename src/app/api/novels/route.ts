@@ -5,11 +5,13 @@ import { z } from "zod";
 
 const createSchema = z.object({
   title: z.string().min(1),
-  genre: z.enum(["BL", "BG", "OTHER"]).default("BG"),
-  maleLeadName: z.string().optional(),
-  maleLeadTraits: z.string().optional(),
-  femaleLeadName: z.string().optional(),
-  femaleLeadTraits: z.string().optional(),
+  genre: z.enum(["BL", "BG", "GL", "OTHER"]).default("BG"),
+  maleLeadName: z.string().optional().nullable(),
+  maleLeadTraits: z.string().optional().nullable(),
+  femaleLeadName: z.string().optional().nullable(),
+  femaleLeadTraits: z.string().optional().nullable(),
+  additionalCharacters: z.string().optional().nullable(),
+  metadata: z.string().optional().nullable(),
 });
 
 function auth(req: Request) {
@@ -34,7 +36,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { title, genre, maleLeadName, maleLeadTraits, femaleLeadName, femaleLeadTraits } =
+    const { title, genre, maleLeadName, maleLeadTraits, femaleLeadName, femaleLeadTraits, additionalCharacters, metadata } =
       createSchema.parse(body);
 
     const novel = await prisma.novel.create({
